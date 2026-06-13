@@ -1,0 +1,20 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2712"; // RPi 5 專用
+
+    fragment@0 {
+        target = <&i2c1>;
+        __overlay__ {
+            status = "okay";
+            mpu6050@68 {
+                compatible = "generic-u-sensor";
+                reg = <0x68>;
+                status = "okay";
+                /* 預留給硬體中斷使用 (GPIO) */
+                // interrupts-extended = <&gpio 4 1>; 
+            };
+        };
+    };
+};
